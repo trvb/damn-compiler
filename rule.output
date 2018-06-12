@@ -1,0 +1,1376 @@
+Terminals unused in grammar
+
+   tCONST
+   tTVOID
+   tSTRING
+   tSTARR
+   tNDARR
+
+
+State 39 conflicts: 4 shift/reduce
+State 54 conflicts: 4 shift/reduce
+State 55 conflicts: 4 shift/reduce
+State 56 conflicts: 4 shift/reduce
+State 57 conflicts: 4 shift/reduce
+State 58 conflicts: 4 shift/reduce
+State 59 conflicts: 4 shift/reduce
+State 60 conflicts: 4 shift/reduce
+State 62 conflicts: 10 shift/reduce
+State 63 conflicts: 10 shift/reduce
+State 64 conflicts: 10 shift/reduce
+State 65 conflicts: 10 shift/reduce
+
+
+Grammar
+
+    0 $accept: main $end
+
+    1 main: tTINT tMAIN tSTGRP tNDGRP scope
+
+    2 $@1: %empty
+
+    3 scope: tSTSCP $@1 execs tNDSCP
+
+    4 execs: decl execs
+    5      | affect execs
+    6      | condt execs
+    7      | print execs
+    8      | %empty
+
+    9 $@2: %empty
+
+   10 $@3: %empty
+
+   11 decl: type $@2 tID $@3 decl_aff mdecl
+
+   12 $@4: %empty
+
+   13 mdecl: tIDSEP tID $@4 decl_aff mdecl
+   14      | tEND
+
+   15 decl_aff: tAFFECT expr
+   16         | %empty
+
+   17 $@5: %empty
+
+   18 $@6: %empty
+
+   19 condt: tIF tSTGRP expr $@5 tNDGRP condt_act tSTSCP execs $@6 tNDSCP contd_else
+
+   20 $@7: %empty
+
+   21 contd_else: tELSE tSTSCP execs $@7 tNDSCP
+   22           | %empty
+
+   23 condt_act: %empty
+
+   24 affect: tID tAFFECT expr tEND
+
+   25 type: tTINT
+   26     | tTCHAR
+
+   27 expr: expr tCOMPEQ expr
+   28     | expr tCOMPNEQ expr
+   29     | tID tAFFECT expr
+   30     | expr tCOMPG expr
+   31     | expr tCOMPGE expr
+   32     | expr tCOMPL expr
+   33     | expr tCOMPLE expr
+   34     | expr tOP_PL expr
+   35     | expr tOP_MN expr
+   36     | expr tOP_ML expr
+   37     | expr tOP_DV expr
+   38     | tOP_MN expr
+   39     | tID
+   40     | tINT
+   41     | tCHAR
+
+   42 print: tPRINT tSTGRP expr tNDGRP tEND
+
+
+Terminals, with rules where they appear
+
+$end (0) 0
+error (256)
+tCONST (258)
+tTINT (259) 1 25
+tTCHAR (260) 26
+tTVOID (261)
+tCOMPEQ (262) 27
+tCOMPNEQ (263) 28
+tAFFECT (264) 15 24 29
+tPRINT (265) 42
+tID (266) 11 13 24 29 39
+tIDSEP (267) 13
+tCHAR (268) 41
+tINT (269) 40
+tSTRING (270)
+tOP_PL (271) 34
+tOP_MN (272) 35 38
+tOP_ML (273) 36
+tOP_DV (274) 37
+tMAIN (275) 1
+tSTSCP (276) 3 19 21
+tNDSCP (277) 3 19 21
+tSTGRP (278) 1 19 42
+tNDGRP (279) 1 19 42
+tSTARR (280)
+tNDARR (281)
+tEND (282) 14 24 42
+tIF (283) 19
+tELSE (284) 21
+tCOMPL (285) 32
+tCOMPLE (286) 33
+tCOMPG (287) 30
+tCOMPGE (288) 31
+
+
+Nonterminals, with rules where they appear
+
+$accept (34)
+    on left: 0
+main (35)
+    on left: 1, on right: 0
+scope (36)
+    on left: 3, on right: 1
+$@1 (37)
+    on left: 2, on right: 3
+execs (38)
+    on left: 4 5 6 7 8, on right: 3 4 5 6 7 19 21
+decl (39)
+    on left: 11, on right: 4
+$@2 (40)
+    on left: 9, on right: 11
+$@3 (41)
+    on left: 10, on right: 11
+mdecl (42)
+    on left: 13 14, on right: 11 13
+$@4 (43)
+    on left: 12, on right: 13
+decl_aff (44)
+    on left: 15 16, on right: 11 13
+condt (45)
+    on left: 19, on right: 6
+$@5 (46)
+    on left: 17, on right: 19
+$@6 (47)
+    on left: 18, on right: 19
+contd_else (48)
+    on left: 21 22, on right: 19
+$@7 (49)
+    on left: 20, on right: 21
+condt_act (50)
+    on left: 23, on right: 19
+affect (51)
+    on left: 24, on right: 5
+type (52)
+    on left: 25 26, on right: 11
+expr (53)
+    on left: 27 28 29 30 31 32 33 34 35 36 37 38 39 40 41, on right:
+    15 19 24 27 28 29 30 31 32 33 34 35 36 37 38 42
+print (54)
+    on left: 42, on right: 7
+
+
+State 0
+
+    0 $accept: . main $end
+
+    tTINT  shift, and go to state 1
+
+    main  go to state 2
+
+
+State 1
+
+    1 main: tTINT . tMAIN tSTGRP tNDGRP scope
+
+    tMAIN  shift, and go to state 3
+
+
+State 2
+
+    0 $accept: main . $end
+
+    $end  shift, and go to state 4
+
+
+State 3
+
+    1 main: tTINT tMAIN . tSTGRP tNDGRP scope
+
+    tSTGRP  shift, and go to state 5
+
+
+State 4
+
+    0 $accept: main $end .
+
+    $default  accept
+
+
+State 5
+
+    1 main: tTINT tMAIN tSTGRP . tNDGRP scope
+
+    tNDGRP  shift, and go to state 6
+
+
+State 6
+
+    1 main: tTINT tMAIN tSTGRP tNDGRP . scope
+
+    tSTSCP  shift, and go to state 7
+
+    scope  go to state 8
+
+
+State 7
+
+    3 scope: tSTSCP . $@1 execs tNDSCP
+
+    $default  reduce using rule 2 ($@1)
+
+    $@1  go to state 9
+
+
+State 8
+
+    1 main: tTINT tMAIN tSTGRP tNDGRP scope .
+
+    $default  reduce using rule 1 (main)
+
+
+State 9
+
+    3 scope: tSTSCP $@1 . execs tNDSCP
+
+    tTINT   shift, and go to state 10
+    tTCHAR  shift, and go to state 11
+    tPRINT  shift, and go to state 12
+    tID     shift, and go to state 13
+    tIF     shift, and go to state 14
+
+    $default  reduce using rule 8 (execs)
+
+    execs   go to state 15
+    decl    go to state 16
+    condt   go to state 17
+    affect  go to state 18
+    type    go to state 19
+    print   go to state 20
+
+
+State 10
+
+   25 type: tTINT .
+
+    $default  reduce using rule 25 (type)
+
+
+State 11
+
+   26 type: tTCHAR .
+
+    $default  reduce using rule 26 (type)
+
+
+State 12
+
+   42 print: tPRINT . tSTGRP expr tNDGRP tEND
+
+    tSTGRP  shift, and go to state 21
+
+
+State 13
+
+   24 affect: tID . tAFFECT expr tEND
+
+    tAFFECT  shift, and go to state 22
+
+
+State 14
+
+   19 condt: tIF . tSTGRP expr $@5 tNDGRP condt_act tSTSCP execs $@6 tNDSCP contd_else
+
+    tSTGRP  shift, and go to state 23
+
+
+State 15
+
+    3 scope: tSTSCP $@1 execs . tNDSCP
+
+    tNDSCP  shift, and go to state 24
+
+
+State 16
+
+    4 execs: decl . execs
+
+    tTINT   shift, and go to state 10
+    tTCHAR  shift, and go to state 11
+    tPRINT  shift, and go to state 12
+    tID     shift, and go to state 13
+    tIF     shift, and go to state 14
+
+    $default  reduce using rule 8 (execs)
+
+    execs   go to state 25
+    decl    go to state 16
+    condt   go to state 17
+    affect  go to state 18
+    type    go to state 19
+    print   go to state 20
+
+
+State 17
+
+    6 execs: condt . execs
+
+    tTINT   shift, and go to state 10
+    tTCHAR  shift, and go to state 11
+    tPRINT  shift, and go to state 12
+    tID     shift, and go to state 13
+    tIF     shift, and go to state 14
+
+    $default  reduce using rule 8 (execs)
+
+    execs   go to state 26
+    decl    go to state 16
+    condt   go to state 17
+    affect  go to state 18
+    type    go to state 19
+    print   go to state 20
+
+
+State 18
+
+    5 execs: affect . execs
+
+    tTINT   shift, and go to state 10
+    tTCHAR  shift, and go to state 11
+    tPRINT  shift, and go to state 12
+    tID     shift, and go to state 13
+    tIF     shift, and go to state 14
+
+    $default  reduce using rule 8 (execs)
+
+    execs   go to state 27
+    decl    go to state 16
+    condt   go to state 17
+    affect  go to state 18
+    type    go to state 19
+    print   go to state 20
+
+
+State 19
+
+   11 decl: type . $@2 tID $@3 decl_aff mdecl
+
+    $default  reduce using rule 9 ($@2)
+
+    $@2  go to state 28
+
+
+State 20
+
+    7 execs: print . execs
+
+    tTINT   shift, and go to state 10
+    tTCHAR  shift, and go to state 11
+    tPRINT  shift, and go to state 12
+    tID     shift, and go to state 13
+    tIF     shift, and go to state 14
+
+    $default  reduce using rule 8 (execs)
+
+    execs   go to state 29
+    decl    go to state 16
+    condt   go to state 17
+    affect  go to state 18
+    type    go to state 19
+    print   go to state 20
+
+
+State 21
+
+   42 print: tPRINT tSTGRP . expr tNDGRP tEND
+
+    tID     shift, and go to state 30
+    tCHAR   shift, and go to state 31
+    tINT    shift, and go to state 32
+    tOP_MN  shift, and go to state 33
+
+    expr  go to state 34
+
+
+State 22
+
+   24 affect: tID tAFFECT . expr tEND
+
+    tID     shift, and go to state 30
+    tCHAR   shift, and go to state 31
+    tINT    shift, and go to state 32
+    tOP_MN  shift, and go to state 33
+
+    expr  go to state 35
+
+
+State 23
+
+   19 condt: tIF tSTGRP . expr $@5 tNDGRP condt_act tSTSCP execs $@6 tNDSCP contd_else
+
+    tID     shift, and go to state 30
+    tCHAR   shift, and go to state 31
+    tINT    shift, and go to state 32
+    tOP_MN  shift, and go to state 33
+
+    expr  go to state 36
+
+
+State 24
+
+    3 scope: tSTSCP $@1 execs tNDSCP .
+
+    $default  reduce using rule 3 (scope)
+
+
+State 25
+
+    4 execs: decl execs .
+
+    $default  reduce using rule 4 (execs)
+
+
+State 26
+
+    6 execs: condt execs .
+
+    $default  reduce using rule 6 (execs)
+
+
+State 27
+
+    5 execs: affect execs .
+
+    $default  reduce using rule 5 (execs)
+
+
+State 28
+
+   11 decl: type $@2 . tID $@3 decl_aff mdecl
+
+    tID  shift, and go to state 37
+
+
+State 29
+
+    7 execs: print execs .
+
+    $default  reduce using rule 7 (execs)
+
+
+State 30
+
+   29 expr: tID . tAFFECT expr
+   39     | tID .
+
+    tAFFECT  shift, and go to state 38
+
+    $default  reduce using rule 39 (expr)
+
+
+State 31
+
+   41 expr: tCHAR .
+
+    $default  reduce using rule 41 (expr)
+
+
+State 32
+
+   40 expr: tINT .
+
+    $default  reduce using rule 40 (expr)
+
+
+State 33
+
+   38 expr: tOP_MN . expr
+
+    tID     shift, and go to state 30
+    tCHAR   shift, and go to state 31
+    tINT    shift, and go to state 32
+    tOP_MN  shift, and go to state 33
+
+    expr  go to state 39
+
+
+State 34
+
+   27 expr: expr . tCOMPEQ expr
+   28     | expr . tCOMPNEQ expr
+   30     | expr . tCOMPG expr
+   31     | expr . tCOMPGE expr
+   32     | expr . tCOMPL expr
+   33     | expr . tCOMPLE expr
+   34     | expr . tOP_PL expr
+   35     | expr . tOP_MN expr
+   36     | expr . tOP_ML expr
+   37     | expr . tOP_DV expr
+   42 print: tPRINT tSTGRP expr . tNDGRP tEND
+
+    tCOMPEQ   shift, and go to state 40
+    tCOMPNEQ  shift, and go to state 41
+    tOP_PL    shift, and go to state 42
+    tOP_MN    shift, and go to state 43
+    tOP_ML    shift, and go to state 44
+    tOP_DV    shift, and go to state 45
+    tNDGRP    shift, and go to state 46
+    tCOMPL    shift, and go to state 47
+    tCOMPLE   shift, and go to state 48
+    tCOMPG    shift, and go to state 49
+    tCOMPGE   shift, and go to state 50
+
+
+State 35
+
+   24 affect: tID tAFFECT expr . tEND
+   27 expr: expr . tCOMPEQ expr
+   28     | expr . tCOMPNEQ expr
+   30     | expr . tCOMPG expr
+   31     | expr . tCOMPGE expr
+   32     | expr . tCOMPL expr
+   33     | expr . tCOMPLE expr
+   34     | expr . tOP_PL expr
+   35     | expr . tOP_MN expr
+   36     | expr . tOP_ML expr
+   37     | expr . tOP_DV expr
+
+    tCOMPEQ   shift, and go to state 40
+    tCOMPNEQ  shift, and go to state 41
+    tOP_PL    shift, and go to state 42
+    tOP_MN    shift, and go to state 43
+    tOP_ML    shift, and go to state 44
+    tOP_DV    shift, and go to state 45
+    tEND      shift, and go to state 51
+    tCOMPL    shift, and go to state 47
+    tCOMPLE   shift, and go to state 48
+    tCOMPG    shift, and go to state 49
+    tCOMPGE   shift, and go to state 50
+
+
+State 36
+
+   19 condt: tIF tSTGRP expr . $@5 tNDGRP condt_act tSTSCP execs $@6 tNDSCP contd_else
+   27 expr: expr . tCOMPEQ expr
+   28     | expr . tCOMPNEQ expr
+   30     | expr . tCOMPG expr
+   31     | expr . tCOMPGE expr
+   32     | expr . tCOMPL expr
+   33     | expr . tCOMPLE expr
+   34     | expr . tOP_PL expr
+   35     | expr . tOP_MN expr
+   36     | expr . tOP_ML expr
+   37     | expr . tOP_DV expr
+
+    tCOMPEQ   shift, and go to state 40
+    tCOMPNEQ  shift, and go to state 41
+    tOP_PL    shift, and go to state 42
+    tOP_MN    shift, and go to state 43
+    tOP_ML    shift, and go to state 44
+    tOP_DV    shift, and go to state 45
+    tCOMPL    shift, and go to state 47
+    tCOMPLE   shift, and go to state 48
+    tCOMPG    shift, and go to state 49
+    tCOMPGE   shift, and go to state 50
+
+    $default  reduce using rule 17 ($@5)
+
+    $@5  go to state 52
+
+
+State 37
+
+   11 decl: type $@2 tID . $@3 decl_aff mdecl
+
+    $default  reduce using rule 10 ($@3)
+
+    $@3  go to state 53
+
+
+State 38
+
+   29 expr: tID tAFFECT . expr
+
+    tID     shift, and go to state 30
+    tCHAR   shift, and go to state 31
+    tINT    shift, and go to state 32
+    tOP_MN  shift, and go to state 33
+
+    expr  go to state 54
+
+
+State 39
+
+   27 expr: expr . tCOMPEQ expr
+   28     | expr . tCOMPNEQ expr
+   30     | expr . tCOMPG expr
+   31     | expr . tCOMPGE expr
+   32     | expr . tCOMPL expr
+   33     | expr . tCOMPLE expr
+   34     | expr . tOP_PL expr
+   35     | expr . tOP_MN expr
+   36     | expr . tOP_ML expr
+   37     | expr . tOP_DV expr
+   38     | tOP_MN expr .
+
+    tCOMPL   shift, and go to state 47
+    tCOMPLE  shift, and go to state 48
+    tCOMPG   shift, and go to state 49
+    tCOMPGE  shift, and go to state 50
+
+    tCOMPL    [reduce using rule 38 (expr)]
+    tCOMPLE   [reduce using rule 38 (expr)]
+    tCOMPG    [reduce using rule 38 (expr)]
+    tCOMPGE   [reduce using rule 38 (expr)]
+    $default  reduce using rule 38 (expr)
+
+
+State 40
+
+   27 expr: expr tCOMPEQ . expr
+
+    tID     shift, and go to state 30
+    tCHAR   shift, and go to state 31
+    tINT    shift, and go to state 32
+    tOP_MN  shift, and go to state 33
+
+    expr  go to state 55
+
+
+State 41
+
+   28 expr: expr tCOMPNEQ . expr
+
+    tID     shift, and go to state 30
+    tCHAR   shift, and go to state 31
+    tINT    shift, and go to state 32
+    tOP_MN  shift, and go to state 33
+
+    expr  go to state 56
+
+
+State 42
+
+   34 expr: expr tOP_PL . expr
+
+    tID     shift, and go to state 30
+    tCHAR   shift, and go to state 31
+    tINT    shift, and go to state 32
+    tOP_MN  shift, and go to state 33
+
+    expr  go to state 57
+
+
+State 43
+
+   35 expr: expr tOP_MN . expr
+
+    tID     shift, and go to state 30
+    tCHAR   shift, and go to state 31
+    tINT    shift, and go to state 32
+    tOP_MN  shift, and go to state 33
+
+    expr  go to state 58
+
+
+State 44
+
+   36 expr: expr tOP_ML . expr
+
+    tID     shift, and go to state 30
+    tCHAR   shift, and go to state 31
+    tINT    shift, and go to state 32
+    tOP_MN  shift, and go to state 33
+
+    expr  go to state 59
+
+
+State 45
+
+   37 expr: expr tOP_DV . expr
+
+    tID     shift, and go to state 30
+    tCHAR   shift, and go to state 31
+    tINT    shift, and go to state 32
+    tOP_MN  shift, and go to state 33
+
+    expr  go to state 60
+
+
+State 46
+
+   42 print: tPRINT tSTGRP expr tNDGRP . tEND
+
+    tEND  shift, and go to state 61
+
+
+State 47
+
+   32 expr: expr tCOMPL . expr
+
+    tID     shift, and go to state 30
+    tCHAR   shift, and go to state 31
+    tINT    shift, and go to state 32
+    tOP_MN  shift, and go to state 33
+
+    expr  go to state 62
+
+
+State 48
+
+   33 expr: expr tCOMPLE . expr
+
+    tID     shift, and go to state 30
+    tCHAR   shift, and go to state 31
+    tINT    shift, and go to state 32
+    tOP_MN  shift, and go to state 33
+
+    expr  go to state 63
+
+
+State 49
+
+   30 expr: expr tCOMPG . expr
+
+    tID     shift, and go to state 30
+    tCHAR   shift, and go to state 31
+    tINT    shift, and go to state 32
+    tOP_MN  shift, and go to state 33
+
+    expr  go to state 64
+
+
+State 50
+
+   31 expr: expr tCOMPGE . expr
+
+    tID     shift, and go to state 30
+    tCHAR   shift, and go to state 31
+    tINT    shift, and go to state 32
+    tOP_MN  shift, and go to state 33
+
+    expr  go to state 65
+
+
+State 51
+
+   24 affect: tID tAFFECT expr tEND .
+
+    $default  reduce using rule 24 (affect)
+
+
+State 52
+
+   19 condt: tIF tSTGRP expr $@5 . tNDGRP condt_act tSTSCP execs $@6 tNDSCP contd_else
+
+    tNDGRP  shift, and go to state 66
+
+
+State 53
+
+   11 decl: type $@2 tID $@3 . decl_aff mdecl
+
+    tAFFECT  shift, and go to state 67
+
+    $default  reduce using rule 16 (decl_aff)
+
+    decl_aff  go to state 68
+
+
+State 54
+
+   27 expr: expr . tCOMPEQ expr
+   28     | expr . tCOMPNEQ expr
+   29     | tID tAFFECT expr .
+   30     | expr . tCOMPG expr
+   31     | expr . tCOMPGE expr
+   32     | expr . tCOMPL expr
+   33     | expr . tCOMPLE expr
+   34     | expr . tOP_PL expr
+   35     | expr . tOP_MN expr
+   36     | expr . tOP_ML expr
+   37     | expr . tOP_DV expr
+
+    tCOMPEQ   shift, and go to state 40
+    tCOMPNEQ  shift, and go to state 41
+    tOP_PL    shift, and go to state 42
+    tOP_MN    shift, and go to state 43
+    tOP_ML    shift, and go to state 44
+    tOP_DV    shift, and go to state 45
+    tCOMPL    shift, and go to state 47
+    tCOMPLE   shift, and go to state 48
+    tCOMPG    shift, and go to state 49
+    tCOMPGE   shift, and go to state 50
+
+    tCOMPL    [reduce using rule 29 (expr)]
+    tCOMPLE   [reduce using rule 29 (expr)]
+    tCOMPG    [reduce using rule 29 (expr)]
+    tCOMPGE   [reduce using rule 29 (expr)]
+    $default  reduce using rule 29 (expr)
+
+
+State 55
+
+   27 expr: expr . tCOMPEQ expr
+   27     | expr tCOMPEQ expr .
+   28     | expr . tCOMPNEQ expr
+   30     | expr . tCOMPG expr
+   31     | expr . tCOMPGE expr
+   32     | expr . tCOMPL expr
+   33     | expr . tCOMPLE expr
+   34     | expr . tOP_PL expr
+   35     | expr . tOP_MN expr
+   36     | expr . tOP_ML expr
+   37     | expr . tOP_DV expr
+
+    tOP_PL   shift, and go to state 42
+    tOP_MN   shift, and go to state 43
+    tOP_ML   shift, and go to state 44
+    tOP_DV   shift, and go to state 45
+    tCOMPL   shift, and go to state 47
+    tCOMPLE  shift, and go to state 48
+    tCOMPG   shift, and go to state 49
+    tCOMPGE  shift, and go to state 50
+
+    tCOMPL    [reduce using rule 27 (expr)]
+    tCOMPLE   [reduce using rule 27 (expr)]
+    tCOMPG    [reduce using rule 27 (expr)]
+    tCOMPGE   [reduce using rule 27 (expr)]
+    $default  reduce using rule 27 (expr)
+
+
+State 56
+
+   27 expr: expr . tCOMPEQ expr
+   28     | expr . tCOMPNEQ expr
+   28     | expr tCOMPNEQ expr .
+   30     | expr . tCOMPG expr
+   31     | expr . tCOMPGE expr
+   32     | expr . tCOMPL expr
+   33     | expr . tCOMPLE expr
+   34     | expr . tOP_PL expr
+   35     | expr . tOP_MN expr
+   36     | expr . tOP_ML expr
+   37     | expr . tOP_DV expr
+
+    tOP_PL   shift, and go to state 42
+    tOP_MN   shift, and go to state 43
+    tOP_ML   shift, and go to state 44
+    tOP_DV   shift, and go to state 45
+    tCOMPL   shift, and go to state 47
+    tCOMPLE  shift, and go to state 48
+    tCOMPG   shift, and go to state 49
+    tCOMPGE  shift, and go to state 50
+
+    tCOMPL    [reduce using rule 28 (expr)]
+    tCOMPLE   [reduce using rule 28 (expr)]
+    tCOMPG    [reduce using rule 28 (expr)]
+    tCOMPGE   [reduce using rule 28 (expr)]
+    $default  reduce using rule 28 (expr)
+
+
+State 57
+
+   27 expr: expr . tCOMPEQ expr
+   28     | expr . tCOMPNEQ expr
+   30     | expr . tCOMPG expr
+   31     | expr . tCOMPGE expr
+   32     | expr . tCOMPL expr
+   33     | expr . tCOMPLE expr
+   34     | expr . tOP_PL expr
+   34     | expr tOP_PL expr .
+   35     | expr . tOP_MN expr
+   36     | expr . tOP_ML expr
+   37     | expr . tOP_DV expr
+
+    tOP_ML   shift, and go to state 44
+    tOP_DV   shift, and go to state 45
+    tCOMPL   shift, and go to state 47
+    tCOMPLE  shift, and go to state 48
+    tCOMPG   shift, and go to state 49
+    tCOMPGE  shift, and go to state 50
+
+    tCOMPL    [reduce using rule 34 (expr)]
+    tCOMPLE   [reduce using rule 34 (expr)]
+    tCOMPG    [reduce using rule 34 (expr)]
+    tCOMPGE   [reduce using rule 34 (expr)]
+    $default  reduce using rule 34 (expr)
+
+
+State 58
+
+   27 expr: expr . tCOMPEQ expr
+   28     | expr . tCOMPNEQ expr
+   30     | expr . tCOMPG expr
+   31     | expr . tCOMPGE expr
+   32     | expr . tCOMPL expr
+   33     | expr . tCOMPLE expr
+   34     | expr . tOP_PL expr
+   35     | expr . tOP_MN expr
+   35     | expr tOP_MN expr .
+   36     | expr . tOP_ML expr
+   37     | expr . tOP_DV expr
+
+    tOP_ML   shift, and go to state 44
+    tOP_DV   shift, and go to state 45
+    tCOMPL   shift, and go to state 47
+    tCOMPLE  shift, and go to state 48
+    tCOMPG   shift, and go to state 49
+    tCOMPGE  shift, and go to state 50
+
+    tCOMPL    [reduce using rule 35 (expr)]
+    tCOMPLE   [reduce using rule 35 (expr)]
+    tCOMPG    [reduce using rule 35 (expr)]
+    tCOMPGE   [reduce using rule 35 (expr)]
+    $default  reduce using rule 35 (expr)
+
+
+State 59
+
+   27 expr: expr . tCOMPEQ expr
+   28     | expr . tCOMPNEQ expr
+   30     | expr . tCOMPG expr
+   31     | expr . tCOMPGE expr
+   32     | expr . tCOMPL expr
+   33     | expr . tCOMPLE expr
+   34     | expr . tOP_PL expr
+   35     | expr . tOP_MN expr
+   36     | expr . tOP_ML expr
+   36     | expr tOP_ML expr .
+   37     | expr . tOP_DV expr
+
+    tCOMPL   shift, and go to state 47
+    tCOMPLE  shift, and go to state 48
+    tCOMPG   shift, and go to state 49
+    tCOMPGE  shift, and go to state 50
+
+    tCOMPL    [reduce using rule 36 (expr)]
+    tCOMPLE   [reduce using rule 36 (expr)]
+    tCOMPG    [reduce using rule 36 (expr)]
+    tCOMPGE   [reduce using rule 36 (expr)]
+    $default  reduce using rule 36 (expr)
+
+
+State 60
+
+   27 expr: expr . tCOMPEQ expr
+   28     | expr . tCOMPNEQ expr
+   30     | expr . tCOMPG expr
+   31     | expr . tCOMPGE expr
+   32     | expr . tCOMPL expr
+   33     | expr . tCOMPLE expr
+   34     | expr . tOP_PL expr
+   35     | expr . tOP_MN expr
+   36     | expr . tOP_ML expr
+   37     | expr . tOP_DV expr
+   37     | expr tOP_DV expr .
+
+    tCOMPL   shift, and go to state 47
+    tCOMPLE  shift, and go to state 48
+    tCOMPG   shift, and go to state 49
+    tCOMPGE  shift, and go to state 50
+
+    tCOMPL    [reduce using rule 37 (expr)]
+    tCOMPLE   [reduce using rule 37 (expr)]
+    tCOMPG    [reduce using rule 37 (expr)]
+    tCOMPGE   [reduce using rule 37 (expr)]
+    $default  reduce using rule 37 (expr)
+
+
+State 61
+
+   42 print: tPRINT tSTGRP expr tNDGRP tEND .
+
+    $default  reduce using rule 42 (print)
+
+
+State 62
+
+   27 expr: expr . tCOMPEQ expr
+   28     | expr . tCOMPNEQ expr
+   30     | expr . tCOMPG expr
+   31     | expr . tCOMPGE expr
+   32     | expr . tCOMPL expr
+   32     | expr tCOMPL expr .
+   33     | expr . tCOMPLE expr
+   34     | expr . tOP_PL expr
+   35     | expr . tOP_MN expr
+   36     | expr . tOP_ML expr
+   37     | expr . tOP_DV expr
+
+    tCOMPEQ   shift, and go to state 40
+    tCOMPNEQ  shift, and go to state 41
+    tOP_PL    shift, and go to state 42
+    tOP_MN    shift, and go to state 43
+    tOP_ML    shift, and go to state 44
+    tOP_DV    shift, and go to state 45
+    tCOMPL    shift, and go to state 47
+    tCOMPLE   shift, and go to state 48
+    tCOMPG    shift, and go to state 49
+    tCOMPGE   shift, and go to state 50
+
+    tCOMPEQ   [reduce using rule 32 (expr)]
+    tCOMPNEQ  [reduce using rule 32 (expr)]
+    tOP_PL    [reduce using rule 32 (expr)]
+    tOP_MN    [reduce using rule 32 (expr)]
+    tOP_ML    [reduce using rule 32 (expr)]
+    tOP_DV    [reduce using rule 32 (expr)]
+    tCOMPL    [reduce using rule 32 (expr)]
+    tCOMPLE   [reduce using rule 32 (expr)]
+    tCOMPG    [reduce using rule 32 (expr)]
+    tCOMPGE   [reduce using rule 32 (expr)]
+    $default  reduce using rule 32 (expr)
+
+
+State 63
+
+   27 expr: expr . tCOMPEQ expr
+   28     | expr . tCOMPNEQ expr
+   30     | expr . tCOMPG expr
+   31     | expr . tCOMPGE expr
+   32     | expr . tCOMPL expr
+   33     | expr . tCOMPLE expr
+   33     | expr tCOMPLE expr .
+   34     | expr . tOP_PL expr
+   35     | expr . tOP_MN expr
+   36     | expr . tOP_ML expr
+   37     | expr . tOP_DV expr
+
+    tCOMPEQ   shift, and go to state 40
+    tCOMPNEQ  shift, and go to state 41
+    tOP_PL    shift, and go to state 42
+    tOP_MN    shift, and go to state 43
+    tOP_ML    shift, and go to state 44
+    tOP_DV    shift, and go to state 45
+    tCOMPL    shift, and go to state 47
+    tCOMPLE   shift, and go to state 48
+    tCOMPG    shift, and go to state 49
+    tCOMPGE   shift, and go to state 50
+
+    tCOMPEQ   [reduce using rule 33 (expr)]
+    tCOMPNEQ  [reduce using rule 33 (expr)]
+    tOP_PL    [reduce using rule 33 (expr)]
+    tOP_MN    [reduce using rule 33 (expr)]
+    tOP_ML    [reduce using rule 33 (expr)]
+    tOP_DV    [reduce using rule 33 (expr)]
+    tCOMPL    [reduce using rule 33 (expr)]
+    tCOMPLE   [reduce using rule 33 (expr)]
+    tCOMPG    [reduce using rule 33 (expr)]
+    tCOMPGE   [reduce using rule 33 (expr)]
+    $default  reduce using rule 33 (expr)
+
+
+State 64
+
+   27 expr: expr . tCOMPEQ expr
+   28     | expr . tCOMPNEQ expr
+   30     | expr . tCOMPG expr
+   30     | expr tCOMPG expr .
+   31     | expr . tCOMPGE expr
+   32     | expr . tCOMPL expr
+   33     | expr . tCOMPLE expr
+   34     | expr . tOP_PL expr
+   35     | expr . tOP_MN expr
+   36     | expr . tOP_ML expr
+   37     | expr . tOP_DV expr
+
+    tCOMPEQ   shift, and go to state 40
+    tCOMPNEQ  shift, and go to state 41
+    tOP_PL    shift, and go to state 42
+    tOP_MN    shift, and go to state 43
+    tOP_ML    shift, and go to state 44
+    tOP_DV    shift, and go to state 45
+    tCOMPL    shift, and go to state 47
+    tCOMPLE   shift, and go to state 48
+    tCOMPG    shift, and go to state 49
+    tCOMPGE   shift, and go to state 50
+
+    tCOMPEQ   [reduce using rule 30 (expr)]
+    tCOMPNEQ  [reduce using rule 30 (expr)]
+    tOP_PL    [reduce using rule 30 (expr)]
+    tOP_MN    [reduce using rule 30 (expr)]
+    tOP_ML    [reduce using rule 30 (expr)]
+    tOP_DV    [reduce using rule 30 (expr)]
+    tCOMPL    [reduce using rule 30 (expr)]
+    tCOMPLE   [reduce using rule 30 (expr)]
+    tCOMPG    [reduce using rule 30 (expr)]
+    tCOMPGE   [reduce using rule 30 (expr)]
+    $default  reduce using rule 30 (expr)
+
+
+State 65
+
+   27 expr: expr . tCOMPEQ expr
+   28     | expr . tCOMPNEQ expr
+   30     | expr . tCOMPG expr
+   31     | expr . tCOMPGE expr
+   31     | expr tCOMPGE expr .
+   32     | expr . tCOMPL expr
+   33     | expr . tCOMPLE expr
+   34     | expr . tOP_PL expr
+   35     | expr . tOP_MN expr
+   36     | expr . tOP_ML expr
+   37     | expr . tOP_DV expr
+
+    tCOMPEQ   shift, and go to state 40
+    tCOMPNEQ  shift, and go to state 41
+    tOP_PL    shift, and go to state 42
+    tOP_MN    shift, and go to state 43
+    tOP_ML    shift, and go to state 44
+    tOP_DV    shift, and go to state 45
+    tCOMPL    shift, and go to state 47
+    tCOMPLE   shift, and go to state 48
+    tCOMPG    shift, and go to state 49
+    tCOMPGE   shift, and go to state 50
+
+    tCOMPEQ   [reduce using rule 31 (expr)]
+    tCOMPNEQ  [reduce using rule 31 (expr)]
+    tOP_PL    [reduce using rule 31 (expr)]
+    tOP_MN    [reduce using rule 31 (expr)]
+    tOP_ML    [reduce using rule 31 (expr)]
+    tOP_DV    [reduce using rule 31 (expr)]
+    tCOMPL    [reduce using rule 31 (expr)]
+    tCOMPLE   [reduce using rule 31 (expr)]
+    tCOMPG    [reduce using rule 31 (expr)]
+    tCOMPGE   [reduce using rule 31 (expr)]
+    $default  reduce using rule 31 (expr)
+
+
+State 66
+
+   19 condt: tIF tSTGRP expr $@5 tNDGRP . condt_act tSTSCP execs $@6 tNDSCP contd_else
+
+    $default  reduce using rule 23 (condt_act)
+
+    condt_act  go to state 69
+
+
+State 67
+
+   15 decl_aff: tAFFECT . expr
+
+    tID     shift, and go to state 30
+    tCHAR   shift, and go to state 31
+    tINT    shift, and go to state 32
+    tOP_MN  shift, and go to state 33
+
+    expr  go to state 70
+
+
+State 68
+
+   11 decl: type $@2 tID $@3 decl_aff . mdecl
+
+    tIDSEP  shift, and go to state 71
+    tEND    shift, and go to state 72
+
+    mdecl  go to state 73
+
+
+State 69
+
+   19 condt: tIF tSTGRP expr $@5 tNDGRP condt_act . tSTSCP execs $@6 tNDSCP contd_else
+
+    tSTSCP  shift, and go to state 74
+
+
+State 70
+
+   15 decl_aff: tAFFECT expr .
+   27 expr: expr . tCOMPEQ expr
+   28     | expr . tCOMPNEQ expr
+   30     | expr . tCOMPG expr
+   31     | expr . tCOMPGE expr
+   32     | expr . tCOMPL expr
+   33     | expr . tCOMPLE expr
+   34     | expr . tOP_PL expr
+   35     | expr . tOP_MN expr
+   36     | expr . tOP_ML expr
+   37     | expr . tOP_DV expr
+
+    tCOMPEQ   shift, and go to state 40
+    tCOMPNEQ  shift, and go to state 41
+    tOP_PL    shift, and go to state 42
+    tOP_MN    shift, and go to state 43
+    tOP_ML    shift, and go to state 44
+    tOP_DV    shift, and go to state 45
+    tCOMPL    shift, and go to state 47
+    tCOMPLE   shift, and go to state 48
+    tCOMPG    shift, and go to state 49
+    tCOMPGE   shift, and go to state 50
+
+    $default  reduce using rule 15 (decl_aff)
+
+
+State 71
+
+   13 mdecl: tIDSEP . tID $@4 decl_aff mdecl
+
+    tID  shift, and go to state 75
+
+
+State 72
+
+   14 mdecl: tEND .
+
+    $default  reduce using rule 14 (mdecl)
+
+
+State 73
+
+   11 decl: type $@2 tID $@3 decl_aff mdecl .
+
+    $default  reduce using rule 11 (decl)
+
+
+State 74
+
+   19 condt: tIF tSTGRP expr $@5 tNDGRP condt_act tSTSCP . execs $@6 tNDSCP contd_else
+
+    tTINT   shift, and go to state 10
+    tTCHAR  shift, and go to state 11
+    tPRINT  shift, and go to state 12
+    tID     shift, and go to state 13
+    tIF     shift, and go to state 14
+
+    $default  reduce using rule 8 (execs)
+
+    execs   go to state 76
+    decl    go to state 16
+    condt   go to state 17
+    affect  go to state 18
+    type    go to state 19
+    print   go to state 20
+
+
+State 75
+
+   13 mdecl: tIDSEP tID . $@4 decl_aff mdecl
+
+    $default  reduce using rule 12 ($@4)
+
+    $@4  go to state 77
+
+
+State 76
+
+   19 condt: tIF tSTGRP expr $@5 tNDGRP condt_act tSTSCP execs . $@6 tNDSCP contd_else
+
+    $default  reduce using rule 18 ($@6)
+
+    $@6  go to state 78
+
+
+State 77
+
+   13 mdecl: tIDSEP tID $@4 . decl_aff mdecl
+
+    tAFFECT  shift, and go to state 67
+
+    $default  reduce using rule 16 (decl_aff)
+
+    decl_aff  go to state 79
+
+
+State 78
+
+   19 condt: tIF tSTGRP expr $@5 tNDGRP condt_act tSTSCP execs $@6 . tNDSCP contd_else
+
+    tNDSCP  shift, and go to state 80
+
+
+State 79
+
+   13 mdecl: tIDSEP tID $@4 decl_aff . mdecl
+
+    tIDSEP  shift, and go to state 71
+    tEND    shift, and go to state 72
+
+    mdecl  go to state 81
+
+
+State 80
+
+   19 condt: tIF tSTGRP expr $@5 tNDGRP condt_act tSTSCP execs $@6 tNDSCP . contd_else
+
+    tELSE  shift, and go to state 82
+
+    $default  reduce using rule 22 (contd_else)
+
+    contd_else  go to state 83
+
+
+State 81
+
+   13 mdecl: tIDSEP tID $@4 decl_aff mdecl .
+
+    $default  reduce using rule 13 (mdecl)
+
+
+State 82
+
+   21 contd_else: tELSE . tSTSCP execs $@7 tNDSCP
+
+    tSTSCP  shift, and go to state 84
+
+
+State 83
+
+   19 condt: tIF tSTGRP expr $@5 tNDGRP condt_act tSTSCP execs $@6 tNDSCP contd_else .
+
+    $default  reduce using rule 19 (condt)
+
+
+State 84
+
+   21 contd_else: tELSE tSTSCP . execs $@7 tNDSCP
+
+    tTINT   shift, and go to state 10
+    tTCHAR  shift, and go to state 11
+    tPRINT  shift, and go to state 12
+    tID     shift, and go to state 13
+    tIF     shift, and go to state 14
+
+    $default  reduce using rule 8 (execs)
+
+    execs   go to state 85
+    decl    go to state 16
+    condt   go to state 17
+    affect  go to state 18
+    type    go to state 19
+    print   go to state 20
+
+
+State 85
+
+   21 contd_else: tELSE tSTSCP execs . $@7 tNDSCP
+
+    $default  reduce using rule 20 ($@7)
+
+    $@7  go to state 86
+
+
+State 86
+
+   21 contd_else: tELSE tSTSCP execs $@7 . tNDSCP
+
+    tNDSCP  shift, and go to state 87
+
+
+State 87
+
+   21 contd_else: tELSE tSTSCP execs $@7 tNDSCP .
+
+    $default  reduce using rule 21 (contd_else)
